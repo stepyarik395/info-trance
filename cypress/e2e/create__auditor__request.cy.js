@@ -21,12 +21,16 @@ describe('login__auditor', () => {
     cy.get('#list-item-433-0').click();
     cy.get('#input-215').click();
     cy.get('#list-item-445-0').click();
-    cy.get('#input-464').click();
-    cy.get('#list-item-470-0 > .v-list-item__content').click();
+    cy.get('.text--gray-light')
+      .contains('Нормативні акти для норми забрудьоючих речовин *')
+      .next()
+      .click();
+    cy.get('.v-list-item__title').contains('ЄЕК ООН № 83-07').click();
     cy.get(
       ':nth-child(2) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
     ).click();
-    // Інформація про власника
+
+    //Інформація про власника
     cy.get('#input-253').type('Тестовий');
     cy.get('#input-256').type('Тестова');
     cy.get('#input-259').type('Побатькові');
@@ -46,7 +50,7 @@ describe('login__auditor', () => {
     ).click();
     cy.get('#input-291').type('123451');
     cy.get('#input-294').click();
-    cy.get('#list-item-558-3').click();
+    cy.get('#list-item-544-21').click();
     cy.get('#input-299').click();
     cy.get('#list-item-582-0').click();
     cy.get('#input-304').type('awd123');
@@ -61,6 +65,8 @@ describe('login__auditor', () => {
     cy.get('.flex-row > :nth-child(1) > .d-flex').click();
     cy.get(
       '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    ).click(); // load image first input
+    ).selectFile('C:UsersRomaOneDrive/Рабочий стол/cat.png', {
+      action: 'drag-drop',
+    });
   });
 });
