@@ -31,8 +31,8 @@ describe('login__auditor', () => {
     ).click();
 
     //Інформація про власника
-    cy.get('#input-253').type('Тестоіак');
-    cy.get('#input-256').type('Тестова');
+    cy.get('#input-253').type('віовішоа');
+    cy.get('#input-256').type('йіістова');
     cy.get('#input-259').type('Побатькові');
     cy.get('#input-263').click();
     cy.get(':nth-child(23)').click();
@@ -56,6 +56,8 @@ describe('login__auditor', () => {
     cy.get('.text--gray-light').contains('Місто/Село *').next().click();
     cy.wait(500);
     cy.get('.v-list-item__title').contains('Нововолинськ').click();
+
+    // документи
     cy.get('.text--gray-light')
       .contains('Вулиця *')
       .next()
@@ -151,8 +153,12 @@ describe('login__auditor', () => {
     ).selectFile('cypress/fixtures/glassmarking.jpeg', {
       action: 'drag-drop',
     });
-    // cy.get(
-    //   ':nth-child(4) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
-    // ).click();
+    cy.wait(4000);
+    cy.get(
+      ':nth-child(4) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
+    ).click();
+    cy.wait(4000);
+    cy.get('.white--text').contains('Підписати').click();
+    cy.wait(4000);
   });
 });
