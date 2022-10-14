@@ -1,5 +1,5 @@
 describe('login__auditor', () => {
-  it.only('Visit__sertification__stg ', () => {
+  it('Visit__sertification__stg ', () => {
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('secretary@certification.test.ua');
     cy.get('#input-16').type('dianetdev');
@@ -31,7 +31,7 @@ describe('login__auditor', () => {
     ).click();
 
     //Інформація про власника
-    cy.get('#input-253').type('Тестовий');
+    cy.get('#input-253').type('Тестоіак');
     cy.get('#input-256').type('Тестова');
     cy.get('#input-259').type('Побатькові');
     cy.get('#input-263').click();
@@ -120,56 +120,39 @@ describe('login__auditor', () => {
 
     // Митні документи
 
-    // Свідотство про реестрацію
-
-    // Копія інвойсу
-
-    cy.on('uncaught:exception', (e) => {
-      if (
-        e.message.includes(
-          `'TypeError: Failed to execute 'readAsDataURL' on 'FileReader': parameter 1 is not of type 'Blob''`
-        )
-      ) {
-        cy.get('.flex-row > :nth-child(3) > .d-flex > div')
-          .contains('Митні документи')
-          .trigger('click');
-        cy.get(
-          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-          action: 'drag-drop',
-        });
-
-        cy.get('.flex-row > :nth-child(4) > .d-flex > div')
-          .contains('Свідоцтво про реєстрацію')
-          .trigger('click');
-        cy.get(
-          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-          action: 'drag-drop',
-        });
-
-        cy.get('.flex-row > :nth-child(5) > .d-flex > div')
-          .contains('Копія інвойсу')
-          .trigger('click');
-        cy.get(
-          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-        );
-        e.selectFile('cypress/fixtures/glassmarking.jpeg', {
-          action: 'drag-drop',
-        });
-        cy.get('.flex-row > :nth-child(6) > .d-flex > div')
-          .contains('Екологічний стандарт')
-          .trigger('click');
-        cy.get(
-          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-          action: 'drag-drop',
-        });
-        return false;
-      }
-      // on any other error message the test fails
+    cy.get('.flex-row > :nth-child(4) > .d-flex > div')
+      .contains('Свідоцтво про реєстрацію')
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.flex-row > :nth-child(5) > .d-flex > div')
+      .contains('Копія інвойсу')
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
     });
 
-    // Екологічний стандарт
+    cy.get('.flex-row > :nth-child(6) > .d-flex > div')
+      .contains('Екологічний стандарт')
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    // cy.get(
+    //   ':nth-child(4) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
+    // ).click();
   });
 });
