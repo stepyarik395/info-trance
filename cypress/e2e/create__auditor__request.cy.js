@@ -1,5 +1,5 @@
 describe('login__auditor', () => {
-  it('Visit__sertification__stg ', () => {
+  it.only('Visit__sertification__stg ', () => {
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('secretary@certification.test.ua');
     cy.get('#input-16').type('dianetdev');
@@ -54,6 +54,7 @@ describe('login__auditor', () => {
     cy.get('.v-list-item__title').contains('Волинська область').click();
 
     cy.get('.text--gray-light').contains('Місто/Село *').next().click();
+    cy.wait(500);
     cy.get('.v-list-item__title').contains('Нововолинськ').click();
     cy.get('.text--gray-light')
       .contains('Вулиця *')
@@ -83,23 +84,92 @@ describe('login__auditor', () => {
     cy.get(
       ':nth-child(3) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
     ).click();
+
+    //Паспорт
     cy.get('.flex-row > :nth-child(1) > .d-flex > div')
       .contains('Паспорт')
-      .click();
-    cy.get('.filepond--drop-label')
-      .next()
-      .selectFile(
-        'D:Roma/back-files-computer/back-files-computer/start__cooment.png',
-        {
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+
+    cy.get('.flex-row > :nth-child(2) > .d-flex > div')
+      .contains('РНОКПП (ІПН)')
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.flex-row > :nth-child(3) > .d-flex > div')
+      .contains('Митні документи')
+      .then((elem) => {
+        elem.click();
+      });
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+
+    // Митні документи
+
+    // Свідотство про реестрацію
+
+    // Копія інвойсу
+
+    cy.on('uncaught:exception', (e) => {
+      if (
+        e.message.includes(
+          `'TypeError: Failed to execute 'readAsDataURL' on 'FileReader': parameter 1 is not of type 'Blob''`
+        )
+      ) {
+        cy.get('.flex-row > :nth-child(3) > .d-flex > div')
+          .contains('Митні документи')
+          .trigger('click');
+        cy.get(
+          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
           action: 'drag-drop',
-        }
-      );
-    //Документы
-    // cy.get('.flex-row > :nth-child(1) > .d-flex').click();
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // ).selectFile('C:UsersRomaOneDrive/Рабочий стол/cat.png', {
-    //   action: 'drag-drop',
-    // });
+        });
+
+        cy.get('.flex-row > :nth-child(4) > .d-flex > div')
+          .contains('Свідоцтво про реєстрацію')
+          .trigger('click');
+        cy.get(
+          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+          action: 'drag-drop',
+        });
+
+        cy.get('.flex-row > :nth-child(5) > .d-flex > div')
+          .contains('Копія інвойсу')
+          .trigger('click');
+        cy.get(
+          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+        );
+        e.selectFile('cypress/fixtures/glassmarking.jpeg', {
+          action: 'drag-drop',
+        });
+        cy.get('.flex-row > :nth-child(6) > .d-flex > div')
+          .contains('Екологічний стандарт')
+          .trigger('click');
+        cy.get(
+          '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+        ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+          action: 'drag-drop',
+        });
+        return false;
+      }
+      // on any other error message the test fails
+    });
+
+    // Екологічний стандарт
   });
 });
