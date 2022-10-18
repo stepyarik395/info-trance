@@ -72,10 +72,8 @@ describe('login__auditor', () => {
       });
     cy.wait(500);
     cy.get('.filepond--drop-label')
-      .children('label')
-      .first()
+      .children()
       .selectFile('cypress/fixtures/glassmarking.jpeg');
-
     // cy.get('.flex-row > :nth-child(2) > .d-flex > div')
     //   .contains('РНОКПП (ІПН)')
     //   .then((elem) => {
