@@ -6,7 +6,7 @@ describe('login__auditor', () => {
     cy.get('.v-btn').click();
     cy.get('.row > a').click();
     //Інформація про КТЗ
-    cy.get('input[placeholder="VIN код"]').type('135455213');
+    cy.get('input[placeholder="VIN код"]').type('45474756');
     cy.get('input[placeholder="Рік виробництва"]').type('1994');
     cy.get('.v-label').contains('Марка').next().click();
     cy.get('.v-list-item__title').contains('Audi').click();
@@ -31,8 +31,8 @@ describe('login__auditor', () => {
     ).click();
 
     //Інформація про власника
-    cy.get('input[placeholder="Прізвище"]').type('Шпак');
-    cy.get(`input[placeholder="Ім'я"]`).type('Шпак');
+    cy.get('input[placeholder="Прізвище"]').type('Шпакі');
+    cy.get(`input[placeholder="Ім'я"]`).type('Шпакіла');
     cy.get('input[placeholder="По-батькові"]').type('Шпак');
 
     cy.get('.v-label').contains('Дата народження').next().click();
@@ -65,27 +65,63 @@ describe('login__auditor', () => {
     ).click();
 
     //Документы
-    cy.get('.flex-row > :nth-child(1) > .d-flex > div')
+
+    cy.get('.file-uploader-preview')
+      .children('div')
       .contains('Паспорт')
-      .then((elem) => {
-        elem.click();
-      });
-    cy.wait(500);
-    cy.get('.filepond--drop-label')
-      .children()
-      .selectFile('cypress/fixtures/glassmarking.jpeg');
-    // cy.get('.flex-row > :nth-child(2) > .d-flex > div')
-    //   .contains('РНОКПП (ІПН)')
-    //   .then((elem) => {
-    //     elem.click();
-    //   });
-    // cy.get('.filepond--drop-label')
-    //   .children('label')
-    //   .first()
-    //   .selectFile('cypress/fixtures/glassmarking.jpeg');
-    // cy.wait(500);
-    // cy.get('label')
-    //   .contains('Додати фото +')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.file-uploader-preview')
+      .children('div')
+      .contains('РНОКПП (ІПН)')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.file-uploader-preview')
+      .children('div')
+      .contains('Митні документи')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.file-uploader-preview')
+      .children('div')
+      .contains('Свідоцтво про реєстрацію')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+    cy.get('.file-uploader-preview')
+      .children('div')
+      .contains('Копія інвойсу')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+
+    cy.get('.file-uploader-preview')
+      .children('div')
+      .contains('Екологічний стандарт')
+      .click();
+    cy.get(
+      '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
+    ).selectFile('cypress/fixtures/glassmarking.jpeg', {
+      action: 'drag-drop',
+    });
+
     //   .selectFile('cypress/fixtures/glassmarking.jpeg');
     // cy.get(
     //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
