@@ -1,5 +1,17 @@
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
+    function makeid(length) {
+      var result = '';
+      var characters =
+        'АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщьЮюЯя';
+      var charactersLength = characters.length;
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
+    }
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('secretary@certification.test.ua');
     cy.get('#input-16').type('dianetdev');
@@ -14,7 +26,7 @@ describe('login__auditor', () => {
     cy.get('.v-list-item__title').contains('100').click();
     cy.get('.v-label').contains('Тип палива').next().click();
     cy.get('.v-list-item__title').contains('Бензин').click();
-    cy.get(`input[placeholder="Об'єм двигуна"]`).type('135455213');
+    cy.get(`input[placeholder="Об'єм двигуна"]`).type('200');
     cy.get('.v-label').contains('Тип трансмісії').next().click();
     cy.get('.v-list-item__title').contains('Автоматична').click();
     cy.get('.v-label').contains('Євро клас').next().click();
@@ -31,7 +43,7 @@ describe('login__auditor', () => {
     ).click();
 
     //Інформація про власника
-    cy.get('input[placeholder="Прізвище"]').type('Шпакі');
+    cy.get('input[placeholder="Прізвище"]').type(`${makeid(5)}`);
     cy.get(`input[placeholder="Ім'я"]`).type('Шпакіла');
     cy.get('input[placeholder="По-батькові"]').type('Шпак');
 
@@ -121,62 +133,7 @@ describe('login__auditor', () => {
     ).selectFile('cypress/fixtures/glassmarking.jpeg', {
       action: 'drag-drop',
     });
-
-    //   .selectFile('cypress/fixtures/glassmarking.jpeg');
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-    //   action: 'drag-drop',
-    // });
-    // cy.get('.flex-row > :nth-child(3) > .d-flex > div')
-    //   .contains('Митні документи')
-    //   .then((elem) => {
-    //     elem.click();
-    //   });
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-    //   action: 'drag-drop',
-    // });
-
-    // cy.get('.flex-row > :nth-child(4) > .d-flex > div')
-    //   .contains('Свідоцтво про реєстрацію')
-    //   .then((elem) => {
-    //     elem.click();
-    //   });
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // )
-    // .selectFile('cypress/fixtures/glassmarking.jpeg', {
-    //   action: 'drag-drop',
-    // });
-    // cy.get('.flex-row > :nth-child(5) > .d-flex > div')
-    //   .contains('Копія інвойсу')
-    //   .then((elem) => {
-    //     elem.click();
-    //   });
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-    //   action: 'drag-drop',
-    // });
-
-    // cy.get('.flex-row > :nth-child(6) > .d-flex > div')
-    //   .contains('Екологічний стандарт')
-    //   .then((elem) => {
-    //     elem.click();
-    //   });
-    // cy.get(
-    //   '[style=""] > .d-flex > .file-uploader > .filepond--root > .filepond--drop-label'
-    // ).selectFile('cypress/fixtures/glassmarking.jpeg', {
-    //   action: 'drag-drop',
-    // });
-    // cy.wait(4000);
-    // cy.get(
-    //   ':nth-child(4) > .v-stepper__content > .v-stepper__wrapper > .v-card > .v-card__actions > .primary'
-    // ).click();
-    // cy.wait(4000);
-    // cy.get('.white--text').contains('Підписати').click();
-    // cy.wait(4000);
+    cy.get('.white--text').contains('Зберегти').click();
+    cy.wait(500);
   });
 });
