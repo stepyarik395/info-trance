@@ -134,6 +134,15 @@ describe('login__auditor', () => {
       action: 'drag-drop',
     });
     cy.get('.white--text').contains('Зберегти').click();
+    cy.wait(2500);
+    cy.get(':nth-child(4) > .v-btn__content > .white--text').click();
+    cy.wait(2500);
+    cy.get('.v-input--selection-controls__ripple').click();
     cy.wait(500);
+    cy.get('.d-flex > .v-btn > .v-btn__content > .white--text').click();
+    cy.get('.signature_pad').click();
+    cy.get('.success').click();
+    cy.wait(500);
+    cy.get('.white--text').contains('Підписати заяву та акт').click();
   });
 });
