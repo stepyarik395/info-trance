@@ -168,6 +168,10 @@ describe('login__auditor', () => {
     cy.get('.signature_pad').click();
     cy.get('.success').click();
     cy.wait(500);
-    cy.get('.white--text').contains('Підписати заяву та акт').click();
+    cy.get('.white--text').contains('Підписати заяву').click();
+    cy.wait(5000);
+    cy.get('.white--text').contains('Відповідає').click();
+    cy.get(5000);
+    // cy.get('.white--text').contains('Підписати акт ідентифікації').click();
   });
 });

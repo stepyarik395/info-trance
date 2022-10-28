@@ -4,5 +4,6 @@ describe('login__admin', () => {
     cy.get('#input-13').type('admin_test@gmail.com');
     cy.get('#input-16').type('dianetdev');
     cy.get('.v-btn').click();
+    cy.url().should('eq', 'https://certification.stg.disoft.dev/statements');
   });
 });
