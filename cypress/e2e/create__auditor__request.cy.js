@@ -1,4 +1,5 @@
 describe('login__auditor', () => {
+  let tmp1;
   it('Visit__sertification__stg ', () => {
     function makeid(length) {
       var result = '';
@@ -192,18 +193,20 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    cy.url().as('urltext');
+    cy.url(($tmp) => {
+      console.log($tmp);
+    });
   });
 
-  it('aut__director', () => {
-    cy.visit('https://certification.stg.disoft.dev/login');
-    cy.get('#input-13').type('director@certification.test');
-    cy.get('#input-16').type('disoftdev');
-    cy.get('.v-btn').click();
-  });
-  it('tra', () => {
-    cy.visit(this.urltext);
-  });
+  // it('aut__director', () => {
+  //   cy.visit('https://certification.stg.disoft.dev/login');
+  //   cy.get('#input-13').type('director@certification.test');
+  //   cy.get('#input-16').type('disoftdev');
+  //   cy.get('.v-btn').click();
+  // });
+  // it('tra', () => {
+  //   cy.visit(this.urltext);
+  // });
 });
 
 // describe('director__asign__request', () => {
