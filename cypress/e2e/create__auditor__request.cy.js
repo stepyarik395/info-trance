@@ -52,7 +52,8 @@ describe('login__auditor', () => {
     cy.get('.v-date-picker-years > li').contains('2000').click();
     cy.get('.v-btn__content').contains('тра').click();
     cy.get('.v-btn__content').contains('10').click();
-    cy.get('.v-label').contains('Клієнт не має РНОКПП (ІПН)').click();
+    cy.get('input[placeholder="РНОКПП (ІПН)"]').type('234566233224');
+
     cy.get('input[placeholder="Номер паспорта"]').type('364545364');
     cy.get('.v-label').contains('Дата видачі').next().click();
     cy.get('.v-date-picker-years > li').contains('2013').click();
@@ -190,14 +191,18 @@ describe('login__auditor', () => {
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
   });
 
-  afterEach(() => {});
+  afterEach(() => {
+    cy.url().as('urltext');
+  });
 
   it('aut__director', () => {
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('director@certification.test');
     cy.get('#input-16').type('disoftdev');
     cy.get('.v-btn').click();
-    cy.visit(retURL());
+  });
+  it('tra', () => {
+    cy.visit(this.urltext);
   });
 });
 
