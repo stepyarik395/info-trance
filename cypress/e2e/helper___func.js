@@ -1,5 +1,3 @@
-import cypress from "cypress";
-
 export default function randomName(length) {
   let result = '';
   let characters =
@@ -11,6 +9,6 @@ export default function randomName(length) {
   return result;
 }
 
-export default function saveUrl(curentUrl) {
-  return curentUrl
-}
+// export default function saveUrl(curentUrl) {
+//   return curentUrl
+// }

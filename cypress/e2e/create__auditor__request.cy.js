@@ -1,5 +1,4 @@
 import randomName from './helper___func.js';
-import saveUrl from './helper___func.js';
 
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
@@ -54,6 +53,11 @@ describe('login__auditor', () => {
     )
       .contains('1')
       .click();
+    cy.get('.v-label').contains('Дата закінчення дії').next().click();
+    cy.get('.v-date-picker-years > li').contains('2023').click();
+    cy.get('.v-btn__content').contains('тра').click();
+    cy.get('.v-btn__content').contains('1').click();
+
     cy.get('input[placeholder="Індекс"]').type('5433');
     cy.get('.v-label').contains('Область').next().click();
     cy.get('.v-list-item__title').contains('Волинська область').click();
@@ -183,18 +187,16 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    saveUrl(cy.url());
+    // saveUrl(cy.url());
   });
 
-  it('aut__director', () => {
-    cy.visit('https://certification.stg.disoft.dev/login');
-    cy.get('#input-13').type('director@certification.test');
-    cy.get('#input-16').type('disoftdev');
-    cy.get('.v-btn').click();
-  });
-  it('visit__director', () => {
-    // cy.visit();
-  });
+  // it('aut__director', () => {
+  //   cy.visit('https://certification.stg.disoft.dev/login');
+  //   cy.get('#input-13').type('director@certification.test');
+  //   cy.get('#input-16').type('disoftdev');
+  //   cy.get('.v-btn').click();
+  // });
+  // it('visit__director', () => {});
 });
 
 // describe('director__asign__request', () => {
