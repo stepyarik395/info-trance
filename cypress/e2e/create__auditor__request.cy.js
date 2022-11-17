@@ -1,4 +1,5 @@
 import randomName from './helper___func.js';
+import saveUrl from './helper___func.js';
 
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
@@ -182,20 +183,18 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    cy.url(($tmp) => {
-      console.log($tmp);
-    });
+    saveUrl(cy.url());
   });
 
-  // it('aut__director', () => {
-  //   cy.visit('https://certification.stg.disoft.dev/login');
-  //   cy.get('#input-13').type('director@certification.test');
-  //   cy.get('#input-16').type('disoftdev');
-  //   cy.get('.v-btn').click();
-  // });
-  // it('tra', () => {
-  //   cy.visit(this.urltext);
-  // });
+  it('aut__director', () => {
+    cy.visit('https://certification.stg.disoft.dev/login');
+    cy.get('#input-13').type('director@certification.test');
+    cy.get('#input-16').type('disoftdev');
+    cy.get('.v-btn').click();
+  });
+  it('visit__director', () => {
+    // cy.visit();
+  });
 });
 
 // describe('director__asign__request', () => {
