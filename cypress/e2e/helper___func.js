@@ -1,4 +1,4 @@
-export default function randomName(length) {
+export function randomName(length) {
   let result = '';
   let characters =
     'АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщьЮюЯя';
@@ -9,6 +9,7 @@ export default function randomName(length) {
   return result;
 }
 
-// export default function saveUrl(curentUrl) {
-//   return curentUrl
-// }
+export function saveUrl(curentUrl) {
+  console.log(curentUrl);
+  return curentUrl;
+}

@@ -1,4 +1,5 @@
-import randomName from './helper___func.js';
+import { randomName } from './helper___func.js';
+import { saveUrl } from './helper___func.js';
 
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
@@ -56,7 +57,10 @@ describe('login__auditor', () => {
     cy.get('.v-label').contains('Дата закінчення дії').next().click();
     cy.get('.v-date-picker-years > li').contains('2023').click();
     cy.get('.v-btn__content').contains('тра').click();
-    cy.get('.v-btn__content').contains('1').click();
+    cy.get(
+      '.fade-transition-enter-active > .v-date-picker-table > table > tbody > :nth-child(1) > :nth-child(2) > .v-btn'
+    ).click();
+    // cy.get('.v-btn--rounded').click();
 
     cy.get('input[placeholder="Індекс"]').type('5433');
     cy.get('.v-label').contains('Область').next().click();
@@ -187,7 +191,7 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    // saveUrl(cy.url());
+    saveUrl(cy.location('href'));
   });
 
   // it('aut__director', () => {
