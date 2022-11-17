@@ -1,18 +1,7 @@
+import randomName from './helper___func.js';
+
 describe('login__auditor', () => {
-  let tmp1;
   it('Visit__sertification__stg ', () => {
-    function makeid(length) {
-      var result = '';
-      var characters =
-        'АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщьЮюЯя';
-      var charactersLength = characters.length;
-      for (var i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength)
-        );
-      }
-      return result;
-    }
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('secretary@certification.test.ua');
     cy.get('#input-16').type('dianetdev');
@@ -45,7 +34,7 @@ describe('login__auditor', () => {
     ).click();
 
     //Інформація про власника
-    cy.get('input[placeholder="Прізвище"]').type(`${makeid(5)}`);
+    cy.get('input[placeholder="Прізвище"]').type(`${randomName(5)}`);
     cy.get(`input[placeholder="Ім'я"]`).type('Шпакіла');
     cy.get('input[placeholder="По-батькові"]').type('Шпак');
 
