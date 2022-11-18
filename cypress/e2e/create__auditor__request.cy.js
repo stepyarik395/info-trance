@@ -192,7 +192,12 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    cy.env('env', 'awdadadwde');
+    saveUrl(
+      cy.location((location) => {
+        console.log(location.href);
+      })
+    );
+    // cy.env('env', 'awdadadwde');
     // saveUrl(cy.location('href'));
   });
 
@@ -202,7 +207,9 @@ describe('login__auditor', () => {
   //   cy.get('#input-16').type('disoftdev');
   //   cy.get('.v-btn').click();
   // });
-  // it('visit__director', () => {});
+  // it('visit__director', () => {
+  //   cy.visit(saveUrl());
+  // });
 });
 
 // describe('director__asign__request', () => {

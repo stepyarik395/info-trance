@@ -10,6 +10,6 @@ export function randomName(length) {
 }
 
 export function saveUrl(curentUrl) {
-  console.log(curentUrl);
-  return curentUrl;
+  let stringUrl = curentUrl.toString();
+  return stringUrl;
 }
