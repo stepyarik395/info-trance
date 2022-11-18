@@ -54,14 +54,15 @@ describe('login__auditor', () => {
     )
       .contains('1')
       .click();
-    cy.get('.v-label').contains('Дата закінчення дії').next().click();
-    cy.get('.v-date-picker-years > li').contains('2023').click();
-    cy.get('.v-btn__content').contains('тра').click();
-    cy.get(
-      '.fade-transition-enter-active > .v-date-picker-table > table > tbody > :nth-child(1) > :nth-child(2) > .v-btn'
-    ).click();
+    cy.get('.v-text-field__slot').next();
+    // .contains('Дата закінчення дії')
+    // .click();
+    // cy.get('.v-date-picker-years > li').contains('2023').click();
+    // cy.get('.v-btn__content').contains('тра').click();
+    // cy.get(
+    //   '.fade-transition-enter-active > .v-date-picker-table > table > tbody > :nth-child(1) > :nth-child(2) > .v-btn'
+    // ).click();
     // cy.get('.v-btn--rounded').click();
-
     cy.get('input[placeholder="Індекс"]').type('5433');
     cy.get('.v-label').contains('Область').next().click();
     cy.get('.v-list-item__title').contains('Волинська область').click();
@@ -191,7 +192,8 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    saveUrl(cy.location('href'));
+    cy.env('env', 'awdadadwde');
+    // saveUrl(cy.location('href'));
   });
 
   // it('aut__director', () => {
