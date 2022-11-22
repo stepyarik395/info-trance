@@ -1,5 +1,4 @@
-import { randomName } from './helper___func.js';
-import { saveUrl } from './helper___func.js';
+import { randomName, saveUrl } from './helper___func.js';
 
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
@@ -67,7 +66,7 @@ describe('login__auditor', () => {
     cy.get('.v-label').contains('Область').next().click();
     cy.get('.v-list-item__title').contains('Волинська область').click();
     cy.get('.v-label').contains('Місто/Село').next().click();
-    cy.wait(500);
+    cy.wait(1500);
     cy.get('.v-list-item__title').contains('Луцьк').click();
     cy.get('input[placeholder="Вулиця"]').type('Жижкевіч');
     cy.get('input[placeholder="Дім"]').type('34');
@@ -193,8 +192,8 @@ describe('login__auditor', () => {
 
   afterEach(() => {
     saveUrl(
-      cy.location((location) => {
-        console.log(location.href);
+      cy.window().then((win) => {
+        console.log(win.location.href);
       })
     );
     // cy.env('env', 'awdadadwde');

@@ -10,6 +10,6 @@ export function randomName(length) {
 }
 
 export function saveUrl(curentUrl) {
-  let stringUrl = curentUrl.toString();
-  return stringUrl;
+  let some = curentUrl.specWindow.origin.toString();
+  return some;
 }
