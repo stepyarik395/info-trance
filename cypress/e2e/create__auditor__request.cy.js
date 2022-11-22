@@ -2,7 +2,7 @@ import { randomName, saveUrl } from './helper___func.js';
 
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
-    cy.visit('https://certification.stg.disoft.dev/login');
+    cy.visit(Cypress.env('urlStgLogin'));
     cy.get('#input-13').type('secretary@certification.test.ua');
     cy.get('#input-16').type('dianetdev');
     cy.get('.v-btn').click();
@@ -191,21 +191,17 @@ describe('login__auditor', () => {
   });
 
   afterEach(() => {
-    saveUrl(
-      cy.window().then((win) => {
-        console.log(win.location.href);
-      })
-    );
-    // cy.env('env', 'awdadadwde');
-    // saveUrl(cy.location('href'));
+    cy.location('href').then(($url) => {
+      // saveUrl($url);
+    });
   });
 
-  // it('aut__director', () => {
-  //   cy.visit('https://certification.stg.disoft.dev/login');
-  //   cy.get('#input-13').type('director@certification.test');
-  //   cy.get('#input-16').type('disoftdev');
-  //   cy.get('.v-btn').click();
-  // });
+  it('aut__director', () => {
+    cy.visit('https://certification.stg.disoft.dev/login');
+    cy.get('#input-13').type('director@certification.test');
+    cy.get('#input-16').type('disoftdev');
+    cy.get('.v-btn').click();
+  });
   // it('visit__director', () => {
   //   cy.visit(saveUrl());
   // });
@@ -219,4 +215,3 @@ describe('login__auditor', () => {
 //     cy.get('.v-btn').click();
 //     cy.get('.row > a').click();
 //   });
-// });

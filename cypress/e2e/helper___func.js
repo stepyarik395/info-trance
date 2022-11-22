@@ -9,7 +9,7 @@ export function randomName(length) {
   return result;
 }
 
-export function saveUrl(curentUrl) {
-  let some = curentUrl.specWindow.origin.toString();
+export function saveUrl(url) {
+  let some = url;
   return some;
 }
