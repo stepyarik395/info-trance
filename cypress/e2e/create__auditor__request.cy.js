@@ -1,5 +1,6 @@
 import { randomName, saveUrl } from './helper___func.js';
 
+var $tmp;
 describe('login__auditor', () => {
   it('Visit__sertification__stg ', () => {
     cy.visit(Cypress.env('urlStgLogin'));
@@ -188,30 +189,18 @@ describe('login__auditor', () => {
     cy.get('.white--text').contains('Схвалити').click();
     cy.wait(1000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
-  });
-
-  afterEach(() => {
     cy.location('href').then(($url) => {
-      // saveUrl($url);
+      $tmp = $url;
     });
   });
-
   it('aut__director', () => {
     cy.visit('https://certification.stg.disoft.dev/login');
     cy.get('#input-13').type('director@certification.test');
     cy.get('#input-16').type('disoftdev');
     cy.get('.v-btn').click();
+    cy.wait(3000);
+    cy.visit($tmp);
+    cy.wait(5000);
+    cy.get('.white--text').contains('Підписати рішення по заяві').click();
   });
-  // it('visit__director', () => {
-  //   cy.visit(saveUrl());
-  // });
 });
-
-// describe('director__asign__request', () => {
-//   it('awdadsawd', () => {
-//     cy.visit('https://certification.stg.disoft.dev/login');
-//     cy.get('#input-13').type('director@certification.test');
-//     cy.get('#input-16').type('disoftdev');
-//     cy.get('.v-btn').click();
-//     cy.get('.row > a').click();
-//   });
