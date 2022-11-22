@@ -8,8 +8,3 @@ export function randomName(length) {
   }
   return result;
 }
-
-export function saveUrl(url) {
-  let some = url;
-  return some;
-}

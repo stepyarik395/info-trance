@@ -1,11 +1,11 @@
-import { randomName, saveUrl } from './helper___func.js';
+import { randomName } from './helper___func.js';
 
 var $tmp;
 describe('login__auditor', () => {
-  it('Visit__sertification__stg ', () => {
+  it('inner__data__request_and__signature ', () => {
     cy.visit(Cypress.env('urlStgLogin'));
-    cy.get('#input-13').type('secretary@certification.test.ua');
-    cy.get('#input-16').type('dianetdev');
+    cy.get('#input-13').type(Cypress.env('loginAuditor'));
+    cy.get('#input-16').type(Cypress.env('passAuditor'));
     cy.get('.v-btn').click();
     cy.get('.row > a').click();
     //Інформація про КТЗ
@@ -20,8 +20,6 @@ describe('login__auditor', () => {
     cy.get(`input[placeholder="Об'єм двигуна"]`).type('200');
     cy.get('.v-label').contains('Тип трансмісії').next().click();
     cy.get('.v-list-item__title').contains('Автоматична').click();
-    // cy.get('.v-label').contains('Євро клас').next().click();
-    // cy.get('.v-list-item__title').contains('EURO 5').click();
     cy.get('.v-label').contains('Євро код').next().click();
     cy.get('.v-list-item__title').contains('61').click();
     cy.get('.v-label')
@@ -36,8 +34,8 @@ describe('login__auditor', () => {
 
     //Інформація про власника
     cy.get('input[placeholder="Прізвище"]').type(`${randomName(5)}`);
-    cy.get(`input[placeholder="Ім'я"]`).type('Шпакіла');
-    cy.get('input[placeholder="По-батькові"]').type('Шпак');
+    cy.get(`input[placeholder="Ім'я"]`).type(`${randomName(5)}`);
+    cy.get('input[placeholder="По-батькові"]').type(`${randomName(5)}`);
 
     cy.get('.v-label').contains('Дата народження').next().click();
     cy.get('.v-date-picker-years > li').contains('2000').click();
@@ -55,14 +53,6 @@ describe('login__auditor', () => {
       .contains('1')
       .click();
     cy.get('.v-text-field__slot').next();
-    // .contains('Дата закінчення дії')
-    // .click();
-    // cy.get('.v-date-picker-years > li').contains('2023').click();
-    // cy.get('.v-btn__content').contains('тра').click();
-    // cy.get(
-    //   '.fade-transition-enter-active > .v-date-picker-table > table > tbody > :nth-child(1) > :nth-child(2) > .v-btn'
-    // ).click();
-    // cy.get('.v-btn--rounded').click();
     cy.get('input[placeholder="Індекс"]').type('5433');
     cy.get('.v-label').contains('Область').next().click();
     cy.get('.v-list-item__title').contains('Волинська область').click();
@@ -193,10 +183,10 @@ describe('login__auditor', () => {
       $tmp = $url;
     });
   });
-  it('aut__director', () => {
-    cy.visit('https://certification.stg.disoft.dev/login');
-    cy.get('#input-13').type('director@certification.test');
-    cy.get('#input-16').type('disoftdev');
+  it('aut__director__and__signature__req', () => {
+    cy.visit(Cypress.env('urlStgLogin'));
+    cy.get('#input-13').type(Cypress.env('directorOsLogin'));
+    cy.get('#input-16').type(Cypress.env('directorOsPassword'));
     cy.get('.v-btn').click();
     cy.wait(3000);
     cy.visit($tmp);
