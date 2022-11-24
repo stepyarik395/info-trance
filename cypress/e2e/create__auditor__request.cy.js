@@ -1,6 +1,6 @@
 import { randomName } from './helper___func.js';
 
-var $currentUrl;
+var $createdUrlRequest;
 describe('login__auditor', () => {
   it('inner__data__request_and__signature ', () => {
     cy.visit(Cypress.env('urlStgLogin'));
@@ -180,7 +180,7 @@ describe('login__auditor', () => {
     cy.wait(1000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
     cy.location('href').then(($url) => {
-      $currentUrl = $url;
+      $createdUrlRequest = $url;
     });
   });
   it('aut__director__and__signature__req', () => {
@@ -192,5 +192,14 @@ describe('login__auditor', () => {
     cy.visit($currentUrl);
     cy.wait(5000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
+  });
+
+  it('auth__expertVl', () => {
+    cy.visit(Cypress.env('urlStgLogin'));
+    cy.get('#input-13').type(Cypress.env('expertVlLogin'));
+    cy.get('#input-16').type(Cypress.env('expertVlPassword'));
+    cy.get('.v-btn').click();
+    cy.wait(3000);
+    cy.visit($createdUrlRequest);
   });
 });
