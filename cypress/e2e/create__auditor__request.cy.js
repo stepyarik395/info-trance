@@ -208,5 +208,25 @@ describe('login__auditor', () => {
     cy.get('.finder-vehicle').scrollTo('bottom');
     cy.wait(2000);
     cy.get('.white--text').contains('Обрати').click();
+    cy.get('.v-select__slot').children().contains('Колір').next().click();
+    cy.get('.v-list-item__title').contains('Білий').click();
+    cy.get('input[placeholder="Пробіг"]').type('200');
+    cy.get('div').contains('Огляд вісей').next().click();
+    cy.get('input[placeholder="Технічно припустима маса"]').type('1');
+    cy.get('input[placeholder="Відстань до наступної осі"]').each(
+      (value, index) => {
+        value[0].type('1');
+      }
+    );
+    cy.get('input[placeholder="Відстань до наступної осі"]').each(
+      (value, index) => {
+        value[1].type('1');
+      }
+    );
+    //  cy.get('input[placeholder="Відстань до наступної осі"]').type('1');
+    //  cy.get('input[placeholder="Ширина"]').type('1');
+    //  cy.get('input[placeholder="Висота"]').type('1');
+    //  cy.get('input[placeholder="Діаметр"]').type('1');
+    //  cy.get('input[placeholder="Тиск"]').type('1');
   });
 });
