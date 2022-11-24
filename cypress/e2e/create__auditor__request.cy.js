@@ -189,7 +189,7 @@ describe('login__auditor', () => {
     cy.get('#input-16').type(Cypress.env('directorOsPassword'));
     cy.get('.v-btn').click();
     cy.wait(3000);
-    cy.visit($currentUrl);
+    cy.visit($createdUrlRequest);
     cy.wait(5000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
   });
@@ -201,5 +201,12 @@ describe('login__auditor', () => {
     cy.get('.v-btn').click();
     cy.wait(3000);
     cy.visit($createdUrlRequest);
+    cy.wait(2000);
+    cy.get('.white--text').contains('Почати огляд').click();
+    cy.get('.v-expansion-panel-header').click();
+    cy.get('.finder-vehicle').trigger('mousedown');
+    cy.get('.finder-vehicle').scrollTo('bottom');
+    cy.wait(2000);
+    cy.get('.white--text').contains('Обрати').click();
   });
 });
