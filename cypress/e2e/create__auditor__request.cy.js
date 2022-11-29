@@ -167,6 +167,8 @@ describe('login__auditor', () => {
     cy.get('.white--text').contains('Підписати акт ідентифікації').click();
     cy.wait(6000);
     cy.get('.white--text').contains('Виставити категорію').click();
+    cy.get('.v-input__icon > .v-icon').click();
+    cy.get('.v-list-item__title').contains('M2').click();
     cy.get('.white--text').contains('Зберегти').click();
     cy.get('.mr-3').click();
     cy.get('.v-label')
@@ -201,9 +203,9 @@ describe('login__auditor', () => {
     cy.get('.v-btn').click();
     cy.wait(3000);
     cy.visit($createdUrlRequest);
-    cy.wait(2000);
+    cy.wait(4000);
     cy.get('.white--text').contains('Почати огляд').click();
-    cy.get('.v-expansion-panel-header').click();
+    cy.get('.v-expansion-panel-header').eq(0).click();
     cy.get('.finder-vehicle').trigger('mousedown');
     cy.get('.finder-vehicle').scrollTo('bottom');
     cy.wait(2000);
@@ -212,17 +214,42 @@ describe('login__auditor', () => {
     cy.get('.v-list-item__title').contains('Білий').click();
     cy.get('input[placeholder="Пробіг"]').type('200');
     cy.get('div').contains('Огляд вісей').next().click();
-    cy.get('input[placeholder="Технічно припустима маса"]').type('1');
-    cy.get('input[placeholder="Відстань до наступної осі"]').each(
-      (value, index) => {
-        value[0].type('1');
-      }
-    );
-    cy.get('input[placeholder="Відстань до наступної осі"]').each(
-      (value, index) => {
-        value[1].type('1');
-      }
-    );
+    cy.wait(2000);
+    cy.get('input[placeholder="Технічно припустима маса"]').eq(0).type('1');
+    cy.get('input[placeholder="Відстань до наступної осі"]').eq(0).type('1');
+    cy.get('input[placeholder="Розподіл цієї маси за осями"]').eq(0).type('1');
+    cy.get(
+      'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]'
+    )
+      .eq(0)
+      .type('1');
+
+    cy.get('input[placeholder="Ширина"]').eq(1).type('1');
+    cy.get('input[placeholder="Діаметр"]').eq(0).type('1');
+    cy.get('input[placeholder="Висота"]').eq(1).type('1');
+    cy.get('input[placeholder="Тиск"]').eq(0).type('1');
+    cy.get('input[placeholder="Висота малюнку протектора шини"]')
+      .eq(0)
+      .type('1');
+    cy.get('input[placeholder="Технічно припустима маса"]').eq(1).type('1');
+    cy.get('input[placeholder="Розподіл цієї маси за осями"]').eq(1).type('1');
+    cy.get(
+      'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]'
+    )
+      .eq(1)
+      .type('1');
+
+    cy.get('input[placeholder="Ширина"]').eq(2).type('1');
+    cy.get('input[placeholder="Діаметр"]').eq(1).type('1');
+    cy.get('input[placeholder="Висота"]').eq(2).type('1');
+    cy.get('input[placeholder="Тиск"]').eq(1).type('1');
+    cy.get('input[placeholder="Висота малюнку протектора шини"]')
+      .eq(1)
+      .type('1');
+    // cy.get('input[placeholder="Висота малюнку протектора шини"]')
+    //   .eq(0)
+    //   .type('1');
+    // cy.get('input[placeholder="Тиск"]').eq(0).type('1');
     //  cy.get('input[placeholder="Відстань до наступної осі"]').type('1');
     //  cy.get('input[placeholder="Ширина"]').type('1');
     //  cy.get('input[placeholder="Висота"]').type('1');
