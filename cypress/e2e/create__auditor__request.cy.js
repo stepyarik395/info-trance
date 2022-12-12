@@ -22,10 +22,11 @@ describe('login__auditor', () => {
     cy.get('.v-list-item__title').contains('Автоматична').click();
     cy.get('.v-label').contains('Євро код').next().click();
     cy.get('.v-list-item__title').contains('61').click();
-    cy.get('.v-label')
-      .contains('Нормативні акти для норми забрудьоючих речовин')
-      .next()
-      .click();
+    // cy.get('.v-label')
+    //   .contains('Нормативні акти для норми забрудьоючих речовин')
+    //   .next()
+    //   .click();
+    cy.get('.col-12 > .v-input > .v-input__control > .v-input__slot').click();
     cy.wait(500);
     cy.get('.v-list-item__title').contains('Регламент EC 715/2007 ').click();
     cy.get(
@@ -223,7 +224,6 @@ describe('login__auditor', () => {
     )
       .eq(0)
       .type('1');
-
     cy.get('input[placeholder="Ширина"]').eq(1).type('1');
     cy.get('input[placeholder="Діаметр"]').eq(0).type('1');
     cy.get('input[placeholder="Висота"]').eq(1).type('1');
@@ -238,7 +238,6 @@ describe('login__auditor', () => {
     )
       .eq(1)
       .type('1');
-
     cy.get('input[placeholder="Ширина"]').eq(2).type('1');
     cy.get('input[placeholder="Діаметр"]').eq(1).type('1');
     cy.get('input[placeholder="Висота"]').eq(2).type('1');
@@ -246,9 +245,9 @@ describe('login__auditor', () => {
     cy.get('input[placeholder="Висота малюнку протектора шини"]')
       .eq(1)
       .type('1');
-    // cy.get('input[placeholder="Висота малюнку протектора шини"]')
-    //   .eq(0)
-    //   .type('1');
+    cy.get('input[placeholder="Висота малюнку протектора шини"]')
+      .eq(0)
+      .type('1');
     // cy.get('input[placeholder="Тиск"]').eq(0).type('1');
     //  cy.get('input[placeholder="Відстань до наступної осі"]').type('1');
     //  cy.get('input[placeholder="Ширина"]').type('1');
