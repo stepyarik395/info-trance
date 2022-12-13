@@ -214,10 +214,20 @@ describe('login__auditor', () => {
     cy.get('.v-select__slot').children().contains('Колір').next().click();
     cy.get('.v-list-item__title').contains('Білий').click();
     cy.get('input[placeholder="Пробіг"]').type('200');
-    cy.get('div').contains('Огляд вісей').next().click();
+    cy.get('input[placeholder="Кількість осей"]').clear();
+    cy.get('input[placeholder="Кількість осей"]').type('1');
+    cy.get('input[placeholder="Кількість коліс"]').clear();
+    cy.get('input[placeholder="Кількість коліс"]').type('1');
+    cy.wait(1500);
+    cy.get(':nth-child(57) > .d-flex > .btn-link').click();
     cy.wait(2000);
+    cy.get('.v-select__slot')
+      .children()
+      .contains('Вибір Реєстраційна/експлуатаційна для припустимої маси на осі')
+      .next()
+      .click();
+    cy.get('.v-list-item__title').contains('Реєстраційна').click();
     cy.get('input[placeholder="Технічно припустима маса"]').eq(0).type('1');
-    cy.get('input[placeholder="Відстань до наступної осі"]').eq(0).type('1');
     cy.get('input[placeholder="Розподіл цієї маси за осями"]').eq(0).type('1');
     cy.get(
       'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]'
@@ -231,28 +241,6 @@ describe('login__auditor', () => {
     cy.get('input[placeholder="Висота малюнку протектора шини"]')
       .eq(0)
       .type('1');
-    cy.get('input[placeholder="Технічно припустима маса"]').eq(1).type('1');
-    cy.get('input[placeholder="Розподіл цієї маси за осями"]').eq(1).type('1');
-    cy.get(
-      'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]'
-    )
-      .eq(1)
-      .type('1');
-    cy.get('input[placeholder="Ширина"]').eq(2).type('1');
-    cy.get('input[placeholder="Діаметр"]').eq(1).type('1');
-    cy.get('input[placeholder="Висота"]').eq(2).type('1');
-    cy.get('input[placeholder="Тиск"]').eq(1).type('1');
-    cy.get('input[placeholder="Висота малюнку протектора шини"]')
-      .eq(1)
-      .type('1');
-    cy.get('input[placeholder="Висота малюнку протектора шини"]')
-      .eq(0)
-      .type('1');
-    // cy.get('input[placeholder="Тиск"]').eq(0).type('1');
-    //  cy.get('input[placeholder="Відстань до наступної осі"]').type('1');
-    //  cy.get('input[placeholder="Ширина"]').type('1');
-    //  cy.get('input[placeholder="Висота"]').type('1');
-    //  cy.get('input[placeholder="Діаметр"]').type('1');
-    //  cy.get('input[placeholder="Тиск"]').type('1');
+    cy.get('.mr-2 > .v-btn__content > .white--text').click();
   });
 });
