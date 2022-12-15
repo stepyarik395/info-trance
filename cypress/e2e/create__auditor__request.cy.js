@@ -262,10 +262,11 @@ describe('login__auditor', () => {
       )
       .next()
       .click();
-    cy.get('.v-list-item__title').contains('Реєстраційна').click();
-    cy.get('input[placeholder="Кількість груп осей"]').type('0');
-    cy.get(
-      '.v-dialog__content--active > .v-dialog > .v-card > .v-card__actions > .v-btn'
-    ).click();
+    cy.wait(2000);
+    cy.get('.v-list-item__content:visible').contains('Реєстраційна').click();
+    // cy.get('input[placeholder="Кількість груп осей"]').type('0');
+    // cy.get(
+    //   '.v-dialog__content--active > .v-dialog > .v-card > .v-card__actions > .v-btn'
+    // ).click();
   });
 });
