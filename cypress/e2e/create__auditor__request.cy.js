@@ -71,6 +71,7 @@ describe('login__auditor', () => {
 
     //Документы
 
+    //Паспорт
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -84,7 +85,7 @@ describe('login__auditor', () => {
         mimeType: 'image/png',
       });
     });
-
+    //РНОКПП (ІПН
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -98,6 +99,7 @@ describe('login__auditor', () => {
         mimeType: 'image/png',
       });
     });
+    //Митні документи
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -111,6 +113,7 @@ describe('login__auditor', () => {
         mimeType: 'image/png',
       });
     });
+    //Свідоцтво про реєстрацію
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -124,7 +127,7 @@ describe('login__auditor', () => {
         mimeType: 'image/png',
       });
     });
-
+    //Копія інвойсу
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -138,6 +141,7 @@ describe('login__auditor', () => {
         mimeType: 'image/png',
       });
     });
+    //Екологічний стандарт
     cy.readFile('cypress/fixtures/glassmarking.jpeg', null).then((file) => {
       expect(Cypress.Buffer.isBuffer(file)).to.be.true;
       cy.get('.file-uploader-preview')
@@ -152,6 +156,7 @@ describe('login__auditor', () => {
       });
     });
     cy.get('.white--text').contains('Зберегти').click();
+    //End create request
     cy.wait(2500);
     cy.get(':nth-child(4) > .v-btn__content > .white--text').click();
     cy.wait(2500);
@@ -160,18 +165,23 @@ describe('login__auditor', () => {
     cy.get('.d-flex > .v-btn > .v-btn__content > .white--text').click();
     cy.get('.signature_pad').click();
     cy.get('.success').click();
+    //Signature client
     cy.wait(2000);
     cy.get('.white--text').contains('Підписати заяву').click();
+    //Signature auditor
     cy.wait(7000);
     cy.get('.white--text').contains('Відповідає').click();
     cy.wait(2000);
     cy.get('.white--text').contains('Підписати акт ідентифікації').click();
+    //successful act identification
     cy.wait(6000);
     cy.get('.white--text').contains('Виставити категорію').click();
+    //Type Category KTZ
     cy.get('.v-input__icon > .v-icon').click();
     cy.get('.v-list-item__title').contains('M2').click();
     cy.get('.white--text').contains('Зберегти').click();
     cy.get('.mr-3').click();
+    //Type branch office
     cy.get('.v-label')
       .contains('Філіал вимірювальної лабораторії')
       .next()
@@ -182,10 +192,12 @@ describe('login__auditor', () => {
     cy.get('.white--text').contains('Схвалити').click();
     cy.wait(1000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
+    //Save create request URL
     cy.location('href').then(($url) => {
       $createdUrlRequest = $url;
     });
   });
+  //Signature request director
   it('aut__director__and__signature__req', () => {
     cy.visit(Cypress.env('urlStgLogin'));
     cy.get('#input-13').type(Cypress.env('directorOsLogin'));
@@ -196,7 +208,7 @@ describe('login__auditor', () => {
     cy.wait(5000);
     cy.get('.white--text').contains('Підписати рішення по заяві').click();
   });
-
+  // Expert login and car inspection
   it('auth__expertVl', () => {
     cy.visit(Cypress.env('urlStgLogin'));
     cy.get('#input-13').type(Cypress.env('expertVlLogin'));
@@ -242,5 +254,18 @@ describe('login__auditor', () => {
       .eq(0)
       .type('1');
     cy.get('.mr-2 > .v-btn__content > .white--text').click();
+    cy.get(':nth-child(58) > .d-flex > .btn-link').click();
+    cy.get('.v-select__slot')
+      .children()
+      .contains(
+        'Вибір Реєстраційна/експлуатаційна для припустимої маси на групі осей'
+      )
+      .next()
+      .click();
+    cy.get('.v-list-item__title').contains('Реєстраційна').click();
+    cy.get('input[placeholder="Кількість груп осей"]').type('0');
+    cy.get(
+      '.v-dialog__content--active > .v-dialog > .v-card > .v-card__actions > .v-btn'
+    ).click();
   });
 });
