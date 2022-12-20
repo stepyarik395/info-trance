@@ -230,6 +230,24 @@ describe('login__auditor', () => {
     cy.get('input[placeholder="Кількість осей"]').type('1');
     cy.get('input[placeholder="Кількість коліс"]').clear();
     cy.get('input[placeholder="Кількість коліс"]').type('1');
+    cy.get('input[placeholder="Тип"]').type('Тип');
+    cy.get('input[placeholder="Варіант"]').type('Варіант');
+    cy.get('input[placeholder="Версія"]').type('Версія');
+    cy.get('.v-select__slot').children().contains('Клас КТЗ').next().click();
+    cy.get('.v-list-item__title').contains('I').click();
+
+    cy.get('.v-select__slot').children().contains('Тип кузова').next().click();
+    cy.get('.v-list-item__title').contains('CA').click();
+    cy.get(
+      'input[placeholder="Кількість місць для пасажирів, які стоять"]'
+    ).type('2');
+
+    cy.get('.v-select__slot')
+      .children()
+      .contains('Колісна формула')
+      .next()
+      .click();
+    cy.get('.v-list-item__title').contains('1x2').click();
     cy.wait(1500);
     cy.get(':nth-child(57) > .d-flex > .btn-link').click();
     cy.wait(2000);
@@ -239,31 +257,34 @@ describe('login__auditor', () => {
       .next()
       .click();
     cy.get('.v-list-item__title').contains('Реєстраційна').click();
-    cy.get('input[placeholder="Технічно припустима маса"]').eq(0).type('1');
-    cy.get('input[placeholder="Розподіл цієї маси за осями"]').eq(0).type('1');
+    cy.get('input[placeholder="Технічно припустима маса"]:visible').type('1');
+    cy.get('input[placeholder="Розподіл цієї маси за осями"]:visible').type(
+      '1'
+    );
     cy.get(
-      'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]'
-    )
-      .eq(0)
-      .type('1');
-    cy.get('input[placeholder="Ширина"]').eq(1).type('1');
-    cy.get('input[placeholder="Діаметр"]').eq(0).type('1');
-    cy.get('input[placeholder="Висота"]').eq(1).type('1');
-    cy.get('input[placeholder="Тиск"]').eq(0).type('1');
-    cy.get('input[placeholder="Висота малюнку протектора шини"]')
-      .eq(0)
-      .type('1');
-    cy.get('.mr-2 > .v-btn__content > .white--text').click();
-    cy.get(':nth-child(58) > .d-flex > .btn-link').click();
-    cy.get('.v-select__slot')
-      .children()
-      .contains(
-        'Вибір Реєстраційна/експлуатаційна для припустимої маси на групі осей'
-      )
-      .next()
+      'input[placeholder="Реєстраційна/експлуатаційна максимально припустима маса на кожній осі"]:visible'
+    ).type('1');
+    cy.get('input[placeholder="Ширина"]:visible').eq(1).type('1');
+    cy.get('input[placeholder="Діаметр"]:visible').eq(0).type('1');
+    cy.get('input[placeholder="Висота"]:visible').eq(1).type('1');
+    cy.get('input[placeholder="Тиск"]:visible').type('1');
+    cy.get('input[placeholder="Висота малюнку протектора шини"]:visible').type(
+      '1'
+    );
+    cy.get('.mr-2 > .v-btn__content > .white--text')
+      .contains('Зберегти')
       .click();
-    cy.wait(2000);
-    cy.get('.v-list-item__content:visible').contains('Реєстраційна').click();
+
+    // cy.get(':nth-child(58) > .d-flex > .btn-link').click();
+    // cy.get('.v-select__slot')
+    //   .children()
+    //   .contains(
+    //     'Вибір Реєстраційна/експлуатаційна для припустимої маси на групі осей'
+    //   )
+    //   .next()
+    //   .click();
+    // cy.wait(2000);
+    // cy.get('.v-list-item__content:visible').contains('Реєстраційна').click();
     // cy.get('input[placeholder="Кількість груп осей"]').type('0');
     // cy.get(
     //   '.v-dialog__content--active > .v-dialog > .v-card > .v-card__actions > .v-btn'
